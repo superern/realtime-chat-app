@@ -2,7 +2,7 @@
 <div class="contact-list">
     <ul class="list-group">
         <li class="list-group-item" v-for="contact in Contacts">
-            <div class="profile-image" :style="picture(contact.profile_image)">
+            <profile-image :url="contact.profile_image"/>
             </div>
             <div class="contact-name">
                 <h4>{{ contact.name }}</h4>
@@ -14,8 +14,10 @@
 </template>
 
 <script>
+    import ProfileImage from './common/ProfileImage'
 	export default {
         name: "Contacts",
+        components: {ProfileImage},
 	    props: {
 	        Contacts: {
 	            type: Array,
@@ -56,20 +58,6 @@
             border-radius: 0
         }
 
-        .profile-image{
-            margin: 5px;
-            -webkit-box-shadow: 0 0 4px 0 #777;
-            -moz-box-shadow: 0 0 4px 0 #777;
-            box-shadow: 0 0 4px 0 #777;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: url(https://static-media-prod-cdn.itsre-sumo.mozilla.net/static/sumo/img/default-FFA-avatar.png) center center/ contain;
-
-            img{
-                width: 50px;
-            }
-        }
         .contact-name{
             display: flex;
             flex-direction: column;
