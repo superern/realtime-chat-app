@@ -18,7 +18,8 @@ class MessageResource extends JsonResource
             'from' => $this->from,
             'to' => $this->to,
             'text' => $this->text,
-            'created_at'=> $this->created_at
+            'created_at'=> $this->created_at,
+            'auth_id' => auth()->user()->id
         ];
     }
 }
