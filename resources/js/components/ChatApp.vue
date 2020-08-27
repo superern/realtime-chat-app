@@ -7,8 +7,8 @@
                         <h1>Messages</h1>
                     </div>
 
-                    <div class="card-body">
-                        <Contacts/>
+                    <div class="card-body d-flex p-0">
+                        <Contacts :contacts="contacts"/>
                         <Conversation/>
                     </div>
                 </div>
@@ -25,8 +25,20 @@
             Conversation,
             Contacts
         },
+        data(){
+            return{
+                contacts: []
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            axios.get('/contacts')
+                .then(res => this.contacts = res.data.data)
         }
     }
 </script>
+<style lang="scss" scoped>
+    .card-body{
+        min-height: 550px;
+        max-height: 600px;
+    }
+</style>
