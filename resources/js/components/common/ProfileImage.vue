@@ -18,7 +18,7 @@
 		    styles(){
 		        return {
                     background: this.url!== null ? `url(${this.url}) center center/contain` : '',
-                    width: this.size !== null ? `${this.size}px` : '',
+                    minWidth: this.size !== null ? `${this.size}px` : '',
                     height: this.size !== null ? `${this.size}px` : '',
                 }
             }
@@ -32,7 +32,7 @@
         -webkit-box-shadow: 0 0 4px 0 #777;
         -moz-box-shadow: 0 0 4px 0 #777;
         box-shadow: 0 0 4px 0 #777;
-        width: 50px;
+        min-width: 50px;
         height: 50px;
         border-radius: 50%;
         background: url(https://static-media-prod-cdn.itsre-sumo.mozilla.net/static/sumo/img/default-FFA-avatar.png) center center/ contain;
