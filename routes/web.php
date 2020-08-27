@@ -24,6 +24,7 @@ Auth::routes();
 Route::middleware('auth')->group(function() {
    Route::get('/home', 'HomeController@index')->name('home');
 
-   Route::get('/contacts', [ContactController::class, 'getContacts'])->name('home');
+   Route::get('/contacts', [ContactController::class, 'getContacts'])->name('contacts');
+   Route::get('/messages/{contact}', [ContactController::class, 'getMessages'])->name('messages');
 
 });
