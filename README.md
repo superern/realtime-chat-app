@@ -12,3 +12,5 @@ The websocket will be in the other app and will be deployed in AWS then connect 
 
 >php artisan key:generate  
 >php artisan serve  
+>npm run dev OR  
+>npm run watch
