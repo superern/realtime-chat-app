@@ -1,19 +1,28 @@
 <template>
-    <div class="profile-image" :style="picture"></div>
+    <div class="profile-image" :style="styles"></div>
 </template>
 
 <script>
 	export default {
 		name: "ProfileImage",
         props: {
-		    url: String,
-            required: true
+		    url: {
+		        type: String,
+            },
+		    size: {
+		        type: Number,
+                default: null
+            },
         },
-        computed: {
-		    picture() {
-                return this.url != null ? `background: url(${this.url}) center center/contain` : '';
+        data(){
+            return{
+                styles: {
+                    background: this.url ? `url(${this.url}) center center/contain` : '',
+                    width: `${this.size}px`,
+                    height: `${this.size}px`
+                }
             }
-        },
+        }
 	}
 </script>
 
