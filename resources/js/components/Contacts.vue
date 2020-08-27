@@ -1,7 +1,7 @@
 <template>
 <div class="contact-list">
     <ul class="list-group">
-        <li class="list-group-item" v-for="contact in Contacts" @click="onSelectContact(contact)">
+        <li :class="[{'selected':selected === contact.id}, 'list-group-item']" v-for="contact in Contacts" @click="onSelectContact(contact)">
             <profile-image :url="contact.profile_image"/>
             <div class="contact-name">
                 <h4>{{ contact.name }}</h4>
@@ -23,11 +23,17 @@
                 required: true
             }
         },
+        data(){
+            return{
+                selected: null
+            }
+        },
         methods:{
             picture(url){
                 return url != null ? `background: url(${url}) center center/contain` : '';
             },
             onSelectContact(contact){
+                this.selected = contact.id;
                 this.$emit('onSelectContact', contact)
             }
         }
@@ -48,7 +54,7 @@
         transition: all 0.3s ease-in-out;
         background: white;
 
-        &:hover{
+        &.selected, &:hover{
             background: #009EF7;
             color: #D6EEFD;
             span{
