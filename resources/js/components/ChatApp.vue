@@ -9,7 +9,7 @@
 
                     <div class="card-body d-flex p-0">
                         <Contacts :contacts="contacts" @onSelectContact="onSelectContact"/>
-                        <Conversation :messages="messages" :contact="selectedContact"/>
+                        <Conversation :contact="selectedContact"/>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,6 @@
         data(){
             return{
                 contacts: [],
-                messages: [],
                 selectedContact: null
             }
         },

@@ -2,7 +2,7 @@
 <div class="conversations">
     <div class="d-flex flex-column h-100" v-if="Contact !== null">
         <message-head :contact="Contact"/>
-        <message-body/>
+        <message-body :contact="Contact" />
         <message-composer/>
     </div>
     <message-empty  v-else />
@@ -24,16 +24,12 @@
             MessageEmpty
         },
         props:{
-		    Messages: {
-		        type: Array,
-                required: true
-            },
             Contact: {
 		        type: Object,
                 required: false
             }
         }
-	}
+    }
 </script>
 
 <style lang="scss" scoped>
