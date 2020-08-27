@@ -1,12 +1,38 @@
 <template>
 <div class="conversations">
-    Conversations here
+    <div v-if="Contact !== null">
+        <message-head/>
+        <message-body/>
+        <message-composer/>
+    </div>
+    <message-empty  v-else />
 </div>
 </template>
 
 <script>
+    import MessageHead from './messages/MessageHead'
+    import MessageBody from './messages/MessageBody'
+    import MessageComposer from './messages/MessageComposer'
+    import MessageEmpty from './messages/MessageEmpty'
+
 	export default {
-		name: "Conversation"
+		name: "Conversation",
+        components: {
+            MessageHead,
+            MessageBody,
+            MessageComposer,
+            MessageEmpty
+        },
+        props:{
+		    Messages: {
+		        type: Array,
+                required: true
+            },
+            Contact: {
+		        type: Number,
+                required: false
+            }
+        }
 	}
 </script>
 

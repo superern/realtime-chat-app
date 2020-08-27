@@ -9,7 +9,8 @@
 
                     <div class="card-body d-flex p-0">
                         <Contacts :contacts="contacts"/>
-                        <Conversation/>
+                        <Conversation :messages="messages" :contact="selectedContact"/>
+
                     </div>
                 </div>
             </div>
@@ -27,7 +28,9 @@
         },
         data(){
             return{
-                contacts: []
+                contacts: [],
+                messages: [],
+                selectedContact: null
             }
         },
         mounted() {
