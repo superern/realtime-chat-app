@@ -14,3 +14,5 @@ The websocket will be in the other app and will be deployed in AWS then connect 
 >php artisan serve  
 >npm run dev OR  
 >npm run watch
+
+<img src="https://im7.ezgif.com/tmp/ezgif-7-654f288343bf.gif" width="800">
