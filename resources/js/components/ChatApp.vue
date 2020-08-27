@@ -9,7 +9,7 @@
 
                     <div class="card-body d-flex p-0">
                         <Contacts :contacts="contacts" @onSelectContact="onSelectContact"/>
-                        <Conversation :contact="selectedContact"/>
+                        <Conversation :contact="selectedContact" :incoming-message="incomingMessage"/>
                     </div>
                 </div>
             </div>
@@ -28,17 +28,29 @@
         data(){
             return{
                 contacts: [],
-                selectedContact: null
+                selectedContact: null,
+                incomingMessage: null,
             }
         },
         methods:{
             onSelectContact(contact){
                 this.selectedContact = contact
+            },
+            handleIncomingMessage(message){
+                if(this.selectedContact !== null && message.from === this.selectedContact.id)
+                    this.incomingMessage = message
             }
         },
         mounted() {
             axios.get('/contacts')
-                .then(res => this.contacts = res.data.data)
+                .then(res => {
+                    this.contacts = res.data.result;
+                    Echo.private(`messages.${res.data.auth_id}`)
+                        .listen('NewMessage', (e)=>{
+                            console.log(e);
+                            this.handleIncomingMessage(e.message)
+                        });
+                })
         }
     }
 </script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use App\Http\Resources\MessageResource;
 use App\Http\Resources\UserResource;
 use App\Models\Message;
@@ -18,7 +19,10 @@ class ContactController extends Controller
     public function getContacts(){
         $users = User::where('id', '<>', auth()->user()->id)->get();
 
-        return UserResource::collection($users);
+        return response([
+            'result' => UserResource::collection($users),
+            'auth_id' => auth()->user()->id
+        ], 200);
     }
 
     public function getMessages(User $contact){
@@ -39,6 +43,7 @@ class ContactController extends Controller
             return response()->json(['message' => 'No valid recipient.'],413);
 
         $message = auth()->user()->sendMessage($contact, request('message'));
+        broadcast(new NewMessage($message));
 
         return response()->json([
             'message' => 'Successfully sent message to '.$contact->name,

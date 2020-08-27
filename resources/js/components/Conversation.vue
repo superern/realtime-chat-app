@@ -27,6 +27,9 @@
             Contact: {
 		        type: Object,
                 required: false
+            },
+            IncomingMessage: {
+                type: Object
             }
         },
         data(){
@@ -37,6 +40,11 @@
         methods: {
             onMessageSent(message){
                 this.newMessage = message;
+            }
+        },
+        watch:{
+		    IncomingMessage(){
+		        this.newMessage = this.IncomingMessage
             }
         }
     }
