@@ -27,12 +27,9 @@
 		        axios.post(`/messages/${this.Contact.id}/send`,{
 		            message: this.message
                 })
-                    .then(res => {
-                        this.$emit('onMessageSent', this.message);
-                        console.log(res);
-                    })
+                    .then(res => this.$emit('onMessageSent', res.data.result))
                     .catch(err => console.log(err))
-                    .finally(() => this.message = '')
+                    .finally(() => this.message = '');
             }
         }
 	}

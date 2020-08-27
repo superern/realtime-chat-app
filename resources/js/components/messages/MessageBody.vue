@@ -21,6 +21,9 @@
 		        type: Object,
                 required: true
             },
+            newMessage: {
+		        type: Object
+            }
         },
         data(){
             return{
@@ -52,6 +55,10 @@
         watch: {
 		    Contact(){
 		        this.getMessages();
+            },
+            async newMessage(message){
+		        await this.messages.push(message);
+                this.scrollToBottom()
             }
         }
 	}

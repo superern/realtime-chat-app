@@ -2,8 +2,8 @@
 <div class="conversations">
     <div class="d-flex flex-column h-100" v-if="Contact !== null">
         <message-head :contact="Contact"/>
-        <message-body :contact="Contact" />
-        <message-composer :contact="Contact"/>
+        <message-body :contact="Contact" :newMessage="newMessage"/>
+        <message-composer :contact="Contact" @onMessageSent="onMessageSent"/>
     </div>
     <message-empty  v-else />
 </div>
@@ -27,6 +27,16 @@
             Contact: {
 		        type: Object,
                 required: false
+            }
+        },
+        data(){
+		    return{
+		        newMessage: null
+            }
+        },
+        methods: {
+            onMessageSent(message){
+                this.newMessage = message;
             }
         }
     }

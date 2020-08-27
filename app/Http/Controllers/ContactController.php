@@ -38,8 +38,11 @@ class ContactController extends Controller
         if(!$contact)
             return response()->json(['message' => 'No valid recipient.'],413);
 
-        auth()->user()->sendMessage($contact, request('message'));
+        $message = auth()->user()->sendMessage($contact, request('message'));
 
-        return response()->json(['message' => 'Successfully sent message to '.$contact->name], 200);
+        return response()->json([
+            'message' => 'Successfully sent message to '.$contact->name,
+            'result' => new MessageResource($message)
+        ], 200);
     }
 }
