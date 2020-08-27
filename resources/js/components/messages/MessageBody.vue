@@ -1,5 +1,5 @@
 <template>
-<div class="conversation-body">
+<div class="conversation-body" ref="messageBody">
     <ul class="list-group">
         <li :class="[messageStyle(message),'list-group-item']" v-for="message in messages">
             <profile-image :url="Contact.profile_image" :size="25" v-if="!isSent(message)"/>
@@ -28,12 +28,16 @@
             }
         },
         methods: {
+		    scrollToBottom(){
+                this.$refs.messageBody.scrollTop = this.$refs.messageBody.scrollHeight - this.$refs.messageBody.clientHeight
+            },
 		    getMessages(){
                 if(this.messages.length)
                     this.messages = [];
 
                 axios.get(`/messages/${this.Contact.id}`)
                     .then(res => this.messages = res.data.data)
+                    .finally(() => this.scrollToBottom());
             },
             isSent(message){
 		        return message.from === message.auth_id;
@@ -47,8 +51,7 @@
         },
         watch: {
 		    Contact(){
-		        this.getMessages()
-                console.log(this.Contact.profile_image)
+		        this.getMessages();
             }
         }
 	}
@@ -60,31 +63,36 @@
     overflow-y: scroll;
     background: #F6F6F6;
 
-    .list-group-item{
-        border:0;
-        display:flex;
-        background: #F6F6F6;
+    .list-group{
+        padding: 30px 0;
 
-        &.sent{
-            text-align: right;
-            display: flex;
-            justify-content: flex-end;
-            &>.message{
-                background: #CDEAFC;
-                color: #6896C0;
+        .list-group-item{
+            border:0;
+            display:flex;
+            background: #F6F6F6;
+
+            &.sent{
+                text-align: right;
+                display: flex;
+                justify-content: flex-end;
+                &>.message{
+                    background: #CDEAFC;
+                    color: #6896C0;
+                }
+            }
+            &.received > .message{
+                background: #E8E8E8;
+                color: #7b7b7b;
+                margin-left: 10px;
+            }
+            .message {
+                padding:5px 10px;
+                border-radius: 4px;
+                width: fit-content;
             }
         }
-        &.received > .message{
-            background: #E8E8E8;
-            color: #7b7b7b;
-            margin-left: 10px;
-        }
-        .message {
-            padding:5px 10px;
-            border-radius: 4px;
-            width: fit-content;
-        }
     }
+
 
     // change scrollbar UI
     &::-webkit-scrollbar-track
