@@ -24,15 +24,17 @@
 
         i {
             font-size: 40px;
-            border: 3px solid black;
+            border: 3px solid #343a40;
             padding: 25px;
             border-radius: 50%;
             margin: 10px;
+            color: #343a40;
         }
 
         h1 {
             font-weight: bold;
             margin: 10px;
+            color: #343a40;
         }
 
         p {

@@ -43,6 +43,13 @@
         display: flex;
         overflow: hidden;
         max-height: 100px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        background: white;
+
+        &:hover{
+            background: lightgray;
+        }
 
         &:first-child,
         &:last-child {
@@ -95,7 +102,7 @@
     &::-webkit-scrollbar-thumb
     {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-        background-color: #555;
+        background-color: #c7c7c7;
     }
 }
 </style>
