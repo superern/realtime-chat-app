@@ -14,12 +14,12 @@
                 default: null
             },
         },
-        data(){
-            return{
-                styles: {
-                    background: this.url ? `url(${this.url}) center center/contain` : '',
-                    width: `${this.size}px`,
-                    height: `${this.size}px`
+        computed:{
+		    styles(){
+		        return {
+                    background: this.url!== null ? `url(${this.url}) center center/contain` : '',
+                    width: this.size !== null ? `${this.size}px` : '',
+                    height: this.size !== null ? `${this.size}px` : '',
                 }
             }
         }
