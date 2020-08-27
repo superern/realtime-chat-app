@@ -3,7 +3,7 @@
     <div class="d-flex flex-column h-100" v-if="Contact !== null">
         <message-head :contact="Contact"/>
         <message-body :contact="Contact" />
-        <message-composer/>
+        <message-composer :contact="Contact"/>
     </div>
     <message-empty  v-else />
 </div>

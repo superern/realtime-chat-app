@@ -1,13 +1,40 @@
 <template>
 <div class="conversation-composer">
     <label for="messageComposer">Message ...</label>
-    <textarea name="messageComposer" id="messageComposer" rows="1"></textarea>
+    <textarea name="messageComposer" id="messageComposer" rows="1"
+              v-model="message"
+              @keydown.enter.prevent
+              @keyup.enter="onSend"></textarea>
 </div>
 </template>
 
 <script>
 	export default {
-		name: "MessageComposer"
+		name: "MessageComposer",
+        props:{
+		    Contact: {
+		        type: Object,
+                required: true
+            }
+        },
+        data(){
+		    return{
+		        message: ''
+            }
+        },
+        methods:{
+		    onSend(){
+		        axios.post(`/messages/${this.Contact.id}/send`,{
+		            message: this.message
+                })
+                    .then(res => {
+                        this.$emit('onMessageSent', this.message);
+                        console.log(res);
+                    })
+                    .catch(err => console.log(err))
+                    .finally(() => this.message = '')
+            }
+        }
 	}
 </script>
 

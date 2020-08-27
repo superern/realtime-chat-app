@@ -31,4 +31,15 @@ class ContactController extends Controller
         ])->orderBy('created_at','ASC')->get();
         return MessageResource::collection($messages);
     }
+
+    public function sendMessage(User $contact){
+        request()->validate(['message' => ['required', 'string']]);
+
+        if(!$contact)
+            return response()->json(['message' => 'No valid recipient.'],413);
+
+        auth()->user()->sendMessage($contact, request('message'));
+
+        return response()->json(['message' => 'Successfully sent message to '.$contact->name], 200);
+    }
 }
