@@ -8,9 +8,8 @@
                     </div>
 
                     <div class="card-body d-flex p-0">
-                        <Contacts :contacts="contacts"/>
+                        <Contacts :contacts="contacts" @onSelectContact="onSelectContact"/>
                         <Conversation :messages="messages" :contact="selectedContact"/>
-
                     </div>
                 </div>
             </div>
@@ -31,6 +30,11 @@
                 contacts: [],
                 messages: [],
                 selectedContact: null
+            }
+        },
+        methods:{
+            onSelectContact(contact){
+                this.selectedContact = contact
             }
         },
         mounted() {

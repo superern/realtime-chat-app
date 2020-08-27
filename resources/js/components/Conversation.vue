@@ -1,7 +1,7 @@
 <template>
 <div class="conversations">
     <div v-if="Contact !== null">
-        <message-head/>
+        <message-head :contact="Contact"/>
         <message-body/>
         <message-composer/>
     </div>
@@ -29,7 +29,7 @@
                 required: true
             },
             Contact: {
-		        type: Number,
+		        type: Object,
                 required: false
             }
         }
@@ -39,6 +39,5 @@
 <style lang="scss" scoped>
 .conversations{
     flex:5;
-    padding: 0 30px;
 }
 </style>

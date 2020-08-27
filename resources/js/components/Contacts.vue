@@ -1,9 +1,8 @@
 <template>
 <div class="contact-list">
     <ul class="list-group">
-        <li class="list-group-item" v-for="contact in Contacts">
+        <li class="list-group-item" v-for="contact in Contacts" @click="onSelectContact(contact)">
             <profile-image :url="contact.profile_image"/>
-            </div>
             <div class="contact-name">
                 <h4>{{ contact.name }}</h4>
                 <span>{{ contact.email }}</span>
@@ -27,7 +26,9 @@
         methods:{
             picture(url){
                 return url != null ? `background: url(${url}) center center/contain` : '';
-
+            },
+            onSelectContact(contact){
+                this.$emit('onSelectContact', contact)
             }
         }
 	}
