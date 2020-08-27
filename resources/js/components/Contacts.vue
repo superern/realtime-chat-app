@@ -39,9 +39,7 @@
     overflow-y: scroll;
 
     .list-group-item{
-        border-right: 0;
-        border-left: 0;
-        border-top: 0;
+        border: 0;
         display: flex;
         overflow: hidden;
         max-height: 100px;
