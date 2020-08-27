@@ -1,6 +1,6 @@
 <template>
 <div class="conversations">
-    <div v-if="Contact !== null">
+    <div class="d-flex flex-column h-100" v-if="Contact !== null">
         <message-head :contact="Contact"/>
         <message-body/>
         <message-composer/>
