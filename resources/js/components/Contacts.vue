@@ -49,7 +49,11 @@
         background: white;
 
         &:hover{
-            background: lightgray;
+            background: #009EF7;
+            color: #D6EEFD;
+            span{
+                color: #D6EEFD !important;
+            }
         }
 
         &:first-child,
@@ -60,8 +64,7 @@
         .contact-name{
             display: flex;
             flex-direction: column;
-            margin: auto 0;
-            margin-left: 15px;
+            margin: auto 0 auto 15px;
 
             h4{
                 font-size: 16px;
@@ -70,6 +73,7 @@
             span{
                 font-size: 12px;
                 color: gray;
+                transition: all 0.3s ease-in-out;
             }
         }
     }
@@ -82,7 +86,7 @@
 
     &::-webkit-scrollbar
     {
-        width: 12px;
+        width: 6px;
         background-color: #F5F5F5;
     }
 
